@@ -1,36 +1,47 @@
 import QtQuick
 import QtQuick.Controls
-import click
+import ClickButtonHandler
 
 Window {
-    width: 500
-    height: 500
+    width: 600
+    height: 425
     visible: true
     title: qsTr("Super Metronome")
 
-    function onValueChanged(){
-
-    }
-    Click{id:click}
+    ClickButtonHandler{id:click}
 
     Rectangle{
         anchors.centerIn:parent
         width: parent.width
         height: parent.height
-        color: "#B0E0E6"
+        color: "black"
     Column{
         spacing: 30
         padding:30
         anchors.horizontalCenter: parent.horizontalCenter
         id:column
 
-    Image{
-        source: "images/metronome.png"
-        width:300
-        height:200
-       anchors.horizontalCenter: parent.horizontalCenter
+        Row{
+            anchors.horizontalCenter: parent.horizontalCenter
+            Text{
+                id:output
+                text: "120"
+                font.pixelSize: 130
+                font.family: "Helvetica"
+                color: "#DC143C"
+                anchors.bottom: parent.bottom
+            }
+            Text{
+                text: " bpm"
+                font.pixelSize: 40
+                font.family: "Helvetica"
+                color: "#DC143C"
+                font.capitalization: Font.AllUppercase
+                anchors.bottom: parent.bottom
+                bottomPadding: 20
+            }
+        }
 
-    }
     Slider{
         id:slider
         from:60
@@ -38,42 +49,67 @@ Window {
         to:220
         stepSize:1
         width: 500
-        onMoved: {output.text = "Tempo: " + value}
+        onMoved: {output.text = value}
         anchors.horizontalCenter: parent.horizontalCenter
+        background: Rectangle {
+                x: slider.leftPadding
+                y: slider.topPadding + slider.availableHeight / 2 - height / 2
+                implicitWidth: 200
+                implicitHeight: 4
+                width: slider.availableWidth
+                height: implicitHeight
+                radius: 50
+                color: "#bdbebf"
+
+                Rectangle {
+                    width: slider.visualPosition * parent.width
+                    height: parent.height
+                    color: "#21be2b"
+                    radius: 50
+                }
+            }
+        handle:Rectangle{
+            x: slider.leftPadding + slider.visualPosition * (slider.availableWidth - width)
+            y: slider.topPadding + slider.availableHeight / 2 - height / 2
+            implicitWidth: 26
+            implicitHeight: 26
+            radius: 13
+            color: "#DC143C"
+            border.color: "#DC143C"
+        }
+
 
     }
-    Text{
-        id:output
-        text: "Tempo: 120"
-        font.pixelSize:15
-        anchors.horizontalCenter: parent.horizontalCenter
-    }
+
 
     Button{
-        width: 120
-        height: 50
+        width: 100
+        height: 100
         id: btn
         hoverEnabled: false
         onClicked:click.changeTempo(slider.value)
+        icon.source: "images/play.png"
+        icon.color: "transparent"
+        icon.width: 50
+        icon.height: 50
+        display: Button.IconOnly
 
         anchors.horizontalCenter: parent.horizontalCenter
         background:Rectangle{
             anchors.fill: parent
-            color: "#c7ecee"
-            border.color: "#01a3a4"
-            radius: 10
+            color: btn.down ? "#ff9685" : "#ffe5e5"
+            radius: 80
 
             Text{
-                text: "Start"
-                font.pixelSize: 18
+                id:buttonText
+                font.pixelSize: 20
+                font.family: "Helvetica"
+                font.capitalization: Font.AllUppercase
                 anchors.centerIn: parent
             }
         }
     }
     }
-    }
-    Component.onCompleted: {
-        click.valueChanged.connect(onValueChanged)
     }
 }
 

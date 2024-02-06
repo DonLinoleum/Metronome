@@ -21,10 +21,11 @@ qt_add_qml_module(appMetronome
     VERSION 1.0
     QML_FILES Main.qml
 
-    SOURCES click.h click.cpp
-    RESOURCES images/metronome.png
+    SOURCES ClickButtonHandler.h ClickButtonHandler.cpp
+    RESOURCES
     RESOURCES sounds/click.wav
-    SOURCES doclickthread.h doclickthread.cpp
+    SOURCES ClickThread.h ClickThread.cpp
+    RESOURCES images/play.png
 
 )
 

@@ -1,6 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include "click.h"
+#include "ClickButtonHandler.h"
 
 int main(int argc, char *argv[])
 {
@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    qmlRegisterType<Click>("click",1,0,"Click");
+    qmlRegisterType<ClickButtonHandler>("ClickButtonHandler",1,0,"ClickButtonHandler");
 
     const QUrl url(u"qrc:/Metronome/Main.qml"_qs);
     QObject::connect(
