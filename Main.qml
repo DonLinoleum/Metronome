@@ -77,11 +77,7 @@ Window {
             color: "#DC143C"
             border.color: "#DC143C"
         }
-
-
     }
-
-
     Button{
         width: 100
         height: 100
@@ -97,7 +93,7 @@ Window {
         anchors.horizontalCenter: parent.horizontalCenter
         background:Rectangle{
             anchors.fill: parent
-            color: btn.down ? "#ff9685" : "#ffe5e5"
+            color: btn.down ? "#A9A9A9" : "white"
             radius: 80
 
             Text{

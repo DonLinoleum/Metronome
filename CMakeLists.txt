@@ -26,6 +26,7 @@ qt_add_qml_module(appMetronome
     RESOURCES sounds/click.wav
     SOURCES ClickThread.h ClickThread.cpp
     RESOURCES images/play.png
+    SOURCES isClickingState.h isClickingState.cpp
 
 )
 

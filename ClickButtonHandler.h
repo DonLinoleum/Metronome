@@ -13,7 +13,6 @@ signals:
     void valueChanged(unsigned);
 private:
     unsigned value{};
-    bool isClick;
 };
 
 #endif // CLICKBUTTONHANDLER_H
