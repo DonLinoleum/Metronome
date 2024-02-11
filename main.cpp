@@ -1,14 +1,13 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include "ClickButtonHandler.h"
+#include "MainState/MainState.h"
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
-
-    qmlRegisterType<ClickButtonHandler>("ClickButtonHandler",1,0,"ClickButtonHandler");
+    qmlRegisterType<MainState>("MainState",1,0,"MainState");
 
     const QUrl url(u"qrc:/Metronome/Main.qml"_qs);
     QObject::connect(

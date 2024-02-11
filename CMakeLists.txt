@@ -21,12 +21,12 @@ qt_add_qml_module(appMetronome
     VERSION 1.0
     QML_FILES Main.qml
 
-    SOURCES ClickButtonHandler.h ClickButtonHandler.cpp
-    RESOURCES
-    RESOURCES sounds/click.wav
-    SOURCES ClickThread.h ClickThread.cpp
+    SOURCES   Handlers/ClickThread.cpp Handlers/ClickThread.h MainState/MainState.cpp MainState/MainState.h
     RESOURCES images/play.png
-    SOURCES isClickingState.h isClickingState.cpp
+    RESOURCES images/pause.png
+
+
+
 
 )
 

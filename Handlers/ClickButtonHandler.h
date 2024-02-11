@@ -8,11 +8,9 @@ class ClickButtonHandler : public QObject
     Q_OBJECT
 public:
     ClickButtonHandler(QObject *parent = nullptr){}
-    Q_INVOKABLE void changeTempo(unsigned value);
+
 signals:
     void valueChanged(unsigned);
-private:
-    unsigned value{};
 };
 
 #endif // CLICKBUTTONHANDLER_H

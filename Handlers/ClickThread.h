@@ -2,16 +2,17 @@
 #define CLICKTHREAD_H
 #include <QThread>
 #include <QSoundEffect>
+#include "MainState/MainState.h"
 
 class ClickThread : public QThread
 {
     Q_OBJECT
 public:
-    ClickThread(unsigned temp){this->temp = temp;}
+    ClickThread(MainState* mainState){this->mainState = mainState;}
 protected:
     void run();
 private:
-    unsigned temp;
+    MainState* mainState;
 };
 
 #endif // CLICKTHREAD_H

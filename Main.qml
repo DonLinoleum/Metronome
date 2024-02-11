@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Controls
-import ClickButtonHandler
+import MainState
 
 Window {
     width: 600
@@ -8,7 +8,7 @@ Window {
     visible: true
     title: qsTr("Super Metronome")
 
-    ClickButtonHandler{id:click}
+    MainState{id:state}
 
     Rectangle{
         anchors.centerIn:parent
@@ -25,7 +25,7 @@ Window {
             anchors.horizontalCenter: parent.horizontalCenter
             Text{
                 id:output
-                text: "120"
+                text: state.tempValue
                 font.pixelSize: 130
                 font.family: "Helvetica"
                 color: "#DC143C"
@@ -49,7 +49,7 @@ Window {
         to:220
         stepSize:1
         width: 500
-        onMoved: {output.text = value}
+        onMoved: state.setTempValue(value)
         anchors.horizontalCenter: parent.horizontalCenter
         background: Rectangle {
                 x: slider.leftPadding
@@ -83,8 +83,8 @@ Window {
         height: 100
         id: btn
         hoverEnabled: false
-        onClicked:click.changeTempo(slider.value)
-        icon.source: "images/play.png"
+        onClicked:state.startOrStopClickHandle()
+        icon.source: state.playButtonIcon
         icon.color: "transparent"
         icon.width: 50
         icon.height: 50

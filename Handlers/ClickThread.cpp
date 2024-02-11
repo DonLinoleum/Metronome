@@ -2,24 +2,23 @@
 #include <QSoundEffect>
 #include <QFileInfo>
 #include <QDir>
-#include "isClickingState.h"
-#include "ClickButtonHandler.h"
+#include "MainState/MainState.h"
 
 void ClickThread::run()
 {
     QSoundEffect effect;
     effect.setSource(QUrl::fromLocalFile(QDir::currentPath() + "/../Metronome/sounds/click.wav"));
     effect.setVolume(1.00f);
-    int tempInMilliseconds = 60 * 1000 / this->temp;
 
     if (effect.status() == 1)
     {
-        isClickingState::isClickingNow = !isClickingState::isClickingNow;
-        (new ClickButtonHandler)->changeTempo(this->temp);
+        MainState::isClickingNow = !MainState::isClickingNow;
+        mainState->startOrStopClickHandle();
     }
 
-    while (isClickingState::isClickingNow)
+    while (MainState::isClickingNow)
     {
+        int tempInMilliseconds = 60 * 1000 / mainState->getTempValue();
         effect.play();
         QThread::msleep(tempInMilliseconds);
     }
